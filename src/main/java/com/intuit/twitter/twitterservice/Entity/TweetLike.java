@@ -1,13 +1,14 @@
 package com.intuit.twitter.twitterservice.Entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by ajesh on 9/17/17.
  */
 
 @Entity @Table(name = "tweet_likes")
-public class TweetLike {
+public class TweetLike implements Serializable{
     @Id
     @GeneratedValue
     private long likeId;

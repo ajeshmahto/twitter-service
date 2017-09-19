@@ -1,6 +1,9 @@
 package com.intuit.twitter.twitterservice.Entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 
@@ -9,7 +12,7 @@ import java.util.List;
  */
 
 @Entity @Table(name = "user")
-public class User {
+public class User implements Serializable{
 
     @Id @Column(name = "user_id", unique = true)
     private Long userId;
@@ -29,7 +32,7 @@ public class User {
             inverseJoinColumns={@JoinColumn(name="followerId")})
     @JoinColumn(name="user_id" , updatable=false, insertable = false)
     private List<User> userFollower;
-
+    @JsonManagedReference
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL , mappedBy = "user")
     private Collection<Tweet> tweets;
 

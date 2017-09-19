@@ -1,13 +1,18 @@
 package com.intuit.twitter.twitterservice.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
-import java.util.*;
+import java.io.Serializable;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by ajesh on 9/17/17.
  */
 @Entity @Table(name = "tweet")
-public class Tweet {
+public class Tweet  implements Serializable{
     @Id
     @GeneratedValue
     @Column(name = "tweet_Id", unique = true)
@@ -16,7 +21,8 @@ public class Tweet {
     private Date createdDate;
     private long noOfLikes;
 
-
+    //@JsonIgnore
+    @JsonBackReference
     @ManyToOne(optional=false, fetch = FetchType.LAZY) @JoinColumn(name = "user_id")
     private User user;
 
