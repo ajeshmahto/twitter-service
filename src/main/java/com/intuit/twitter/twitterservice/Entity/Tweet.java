@@ -16,7 +16,7 @@ public class Tweet  implements Serializable{
     @Id
     @GeneratedValue
     @Column(name = "tweet_Id", unique = true)
-    private long tweetId;
+    private Long tweetId;
     private String tweetContent;
     private Date createdDate;
     private long noOfLikes;
@@ -29,11 +29,11 @@ public class Tweet  implements Serializable{
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "tweet")
     private Set<TweetLike> tweetLikes = new HashSet<>();
 
-    public long getTweetId() {
+    public Long getTweetId() {
         return tweetId;
     }
 
-    public void setTweetId(long tweetId) {
+    public void setTweetId(Long tweetId) {
         this.tweetId = tweetId;
     }
 

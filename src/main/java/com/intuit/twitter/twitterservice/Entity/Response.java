@@ -3,7 +3,7 @@ package com.intuit.twitter.twitterservice.Entity;
 /**
  * Created by ajesh on 9/18/17.
  */
-public class Resonse<T> {
+public class Response<T> {
 
     private String status ;
     private T response;
