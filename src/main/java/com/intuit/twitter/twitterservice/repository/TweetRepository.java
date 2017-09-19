@@ -12,7 +12,7 @@ import java.util.List;
  * Created by ajesh on 9/17/17.
  */
 public interface TweetRepository extends JpaRepository<Tweet, Long>{
-    @Query(value="SELECT t FROM Tweet t where t.user.userId IN  (SELECT uf.userId FROM  User u JOIN u.userFollower uf where u.userId = :userId ) OR t.user.userId = :userId ") //
+    @Query(value="SELECT t FROM Tweet t where t.user.userId IN  (SELECT uf.userId FROM  User u JOIN u.userFollowing uf where u.userId = :userId ) OR t.user.userId = :userId ") //
     List<Tweet> findTweet(@Param("userId") Long id  , Pageable pageRequest);
 
 

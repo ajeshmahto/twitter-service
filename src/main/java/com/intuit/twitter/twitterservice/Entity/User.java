@@ -27,21 +27,21 @@ public class User implements Serializable{
 
 
     @OneToMany( fetch=FetchType.LAZY)
-    @JoinTable(name="USER_FOLLOWER",
+    @JoinTable(name="USER_FOLLOWING",
             joinColumns={@JoinColumn(name="user_id")},
-            inverseJoinColumns={@JoinColumn(name="followerId")})
+            inverseJoinColumns={@JoinColumn(name="user_following_id")})
     @JoinColumn(name="user_id" , updatable=false, insertable = false)
-    private List<User> userFollower;
+    private List<User> userFollowing;
     @JsonManagedReference
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL , mappedBy = "user")
     private Collection<Tweet> tweets;
 
-    public List<User> getUserFollower() {
-        return userFollower;
+    public List<User> getUserFollowing() {
+        return userFollowing;
     }
 
-    public void setUserFollower(List<User> userFollower) {
-        this.userFollower = userFollower;
+    public void setUserFollowing(List<User> userFollowing) {
+        this.userFollowing = userFollowing;
     }
 
     public Collection<Tweet> getTweets() {

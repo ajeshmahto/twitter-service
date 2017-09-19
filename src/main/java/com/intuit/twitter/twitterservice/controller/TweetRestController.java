@@ -7,6 +7,7 @@ import com.intuit.twitter.twitterservice.repository.TweetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -31,6 +33,7 @@ public class TweetRestController {
     @PostMapping("/createTweet")
     public void saveTweet(@RequestBody Tweet tweet){
 
+        tweet.setCreatedDate(new Date());
         tweetRepository.save(tweet);
     }
 
@@ -42,7 +45,7 @@ public class TweetRestController {
                                                            @RequestParam(value="page", required=false, defaultValue="0")Short page
     ){
         Response response = new Response();
-        Pageable pageable = new PageRequest(page, size, null);
+        Pageable pageable = new PageRequest(page, size, Sort.Direction.DESC, "createdDate");
 
         try {
             List<Tweet> tweets ;
@@ -53,6 +56,7 @@ public class TweetRestController {
             return new ResponseEntity(response,HttpStatus.ACCEPTED);
         }
         catch (Exception e){
+            e.printStackTrace();
             response.setStatus("failed");
             response.setResponse(e.getMessage());
             return new ResponseEntity(response,HttpStatus.BAD_REQUEST);
@@ -61,7 +65,5 @@ public class TweetRestController {
 
     }
 
-    //@PostMapping("/getTopTweets")
-    //public ResponseEntity
 
 }

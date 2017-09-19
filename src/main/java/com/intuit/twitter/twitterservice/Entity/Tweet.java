@@ -1,6 +1,7 @@
 package com.intuit.twitter.twitterservice.Entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -18,6 +19,7 @@ public class Tweet  implements Serializable{
     @Column(name = "tweet_Id", unique = true)
     private Long tweetId;
     private String tweetContent;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy HH:mm:ss a z")
     private Date createdDate;
     private long noOfLikes;
 
