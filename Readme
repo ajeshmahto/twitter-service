@@ -1,0 +1,36 @@
+create a database twitter_db in mysql. 
+change db setting from application.properperties. ( username and password).
+to login to ldap use user name - ben & password - benspassword , for authentication. 
+compile & run the application. 
+
+url - localhost:8080 
+
+rest urls - 
+
+1. for getting top 100 tweets - http://localhost:8080/getTweetsByUser?page=0
+post request: payload 
+
+{"userId":1
+ 
+}
+
+2. save new user - http://localhost:8080/saveUser  
+post request. 
+{
+"userId": 1,
+"name": "test3",
+"email": "tes103@gmail.com",
+ "phone": "8184453947" ,
+ "passwordHash": "canoga"
+  
+
+ }
+ 
+3. create new tweets :  http://localhost:8080/createTweet
+post request
+ {
+  "tweetId":1,
+  "tweetContent" :" hello this is tweet from user3 - tweet1",
+  "noOfLikes": 0,
+  "user":{"userId":1}
+}
